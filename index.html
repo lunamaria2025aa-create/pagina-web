@@ -3,49 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Cuaderno ICFES Kawaii</title>
+    <title>Mi Cuaderno ICFES - Aesthetic Edition</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@interactjs/interactjs/index.js"></script>
 </head>
 <body>
 
-    <!-- 1. POST-IT MOTIVACIONAL DE INICIO -->
-    <div class="postit-inicio" id="fraseMotivacional">
-        <span class="pin">📌</span>
-        <p id="textoFrase">¡Cargando tu vibra de hoy...!</p>
-    </div>
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>📚 Materias</h3>
+                <div class="pestanas-materias">
+                    <button class="tab-btn activo" data-materia="lectura">📖 Lectura</button>
+                    <button class="tab-btn" data-materia="ingles">🇬🇧 Inglés</button>
+                    <button class="tab-btn" data-materia="naturales">🌱 Naturales</button>
+                    <button class="tab-btn" data-materia="sociales">🌍 Sociales</button>
+                    <button class="tab-btn" data-materia="matematicas">📐 Matemáticas</button>
+                </div>
+            </div>
 
-    <div class="contenedor-principal">
-        <!-- 2. BARRA DE BÚSQUEDA -->
-        <div class="barra-busqueda">
-            <input type="text" id="buscador" placeholder="🔍 Busca temas en todos tus cuadernos...">
-        </div>
+            <div class="sidebar-section">
+                <h3>🔍 Buscar</h3>
+                <input type="text" id="buscador" placeholder="Buscar en apuntes...">
+            </div>
 
-        <!-- 3. PESTAÑAS DE MATERIAS (CUADERNOS) -->
-        <div class="pestanas-materias">
-            <button class="tab-btn activo" data-materia="lectura">📖 Lectura</button>
-            <button class="tab-btn" data-materia="ingles">🇬🇧 Inglés</button>
-            <button class="tab-btn" data-materia="naturales">🌱 Naturales</button>
-            <button class="tab-btn" data-materia="sociales">🌍 Sociales</button>
-            <button class="tab-btn" data-materia="matematicas">📐 Matemáticas</button>
-        </div>
+            <div class="sidebar-section">
+                <h3>✨ Añadir Elementos</h3>
+                <div class="herramientas-canva">
+                    <button id="btnAnadirTexto" class="btn-herramienta">➕ Añadir Texto/Nota</button>
+                    
+                    <div class="subir-sticker">
+                        <label for="inputStickerPropio" class="btn-herramienta label-file">🖼️ Subir mi Imagen</label>
+                        <input type="file" id="inputStickerPropio" accept="image/*" style="display:none;">
+                    </div>
 
-        <!-- 4. ÁREA DE ESTUDIO -->
-        <main class="lienzo-estudio">
-            <h2 id="tituloMateria">Cuaderno de Lectura Crítica</h2>
-            <textarea id="blocNotas" placeholder="Escribe tus apuntes, resúmenes o preguntas del ICFES aquí..."></textarea>
-            <div class="estado-guardado" id="estadoGuardado">Cambios guardados automáticamente ✨</div>
+                    <button id="btnStickerIA" class="btn-herramienta btn-ia">🤖 Generar Sticker IA</button>
+                </div>
+                
+                <h4 style="margin-top: 15px; color: var(--azul-oscuro);">Stickers Cute</h4>
+                <div class="galeria-stickers">
+                    <img src="https://openmoji.org/data/color/svg/1F4D6.svg" class="sticker-previa" data-tipo="emoji" alt="libro">
+                    <img src="https://openmoji.org/data/color/svg/1F4A1.svg" class="sticker-previa" data-tipo="emoji" alt="idea">
+                    <img src="https://openmoji.org/data/color/svg/2728.svg" class="sticker-previa" data-tipo="emoji" alt="brillos">
+                    <img src="https://openmoji.org/data/color/svg/1F430.svg" class="sticker-previa" data-tipo="emoji" alt="conejo">
+                </div>
+            </div>
+        </aside>
+
+        <main class="cuaderno-canvas">
+            <header class="cuaderno-header">
+                <h2 id="tituloMateria">Lectura Crítica</h2>
+                <div class="control-paginas">
+                    <button id="btnPagAnt">◀</button>
+                    <span>Pág. <strong id="numPagina">1</strong></span>
+                    <button id="btnPagSig">▶</button>
+                </div>
+            </header>
+
+            <div class="hoja-papel" id="lienzoHoja">
+                <textarea id="blocNotas" placeholder="Escribe tus apuntes de esta página aquí..."></textarea>
+                </div>
+            
+            <div id="estadoGuardado" class="estado-guardado">Listo ✨</div>
         </main>
     </div>
 
-    <!-- 5. REPRODUCTOR DE MÚSICA FLOTANTE -->
     <div class="reproductor-flotante" id="reproductor">
-        <div class="rep-header" id="reproductorHeader">🎵 Estudio Vibes (Arrástrame)</div>
+        <div class="rep-header" id="reproductorHeader">🫖 Study Coffee Player ☕</div>
         <div class="rep-cuerpo">
             <select id="selectorSonido">
-                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">🎹 Lofi Instrumental</option>
-                <option value="https://assets.mixkit.co/active_storage/sfx/2433/2433-84.wav">🌧️ Lluvia Relajante</option>
-                <option value="https://assets.mixkit.co/active_storage/sfx/1082/1082-84.wav">☕ Ambiente de Café</option>
+                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">🎹 Lofi Cafe</option>
+                <option value="https://assets.mixkit.co/active_storage/sfx/2433/2433-84.wav">🌧️ Lluvia de Tarde</option>
             </select>
             <div class="controles-musica">
                 <button id="btnPlayPausa">▶️</button>
@@ -54,7 +84,6 @@
         </div>
     </div>
 
-    <!-- Audio oculto que reproducirá los sonidos -->
     <audio id="reproductorAudio" loop></audio>
 
     <script src="script.js"></script>
