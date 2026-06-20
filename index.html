@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuaderno ICFES Kawaii</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. POST-IT MOTIVACIONAL DE INICIO -->
+    <div class="postit-inicio" id="fraseMotivacional">
+        <span class="pin">📌</span>
+        <p id="textoFrase">¡Cargando tu vibra de hoy...!</p>
+    </div>
+
+    <div class="contenedor-principal">
+        <!-- 2. BARRA DE BÚSQUEDA -->
+        <div class="barra-busqueda">
+            <input type="text" id="buscador" placeholder="🔍 Busca temas en todos tus cuadernos...">
+        </div>
+
+        <!-- 3. PESTAÑAS DE MATERIAS (CUADERNOS) -->
+        <div class="pestanas-materias">
+            <button class="tab-btn activo" data-materia="lectura">📖 Lectura</button>
+            <button class="tab-btn" data-materia="ingles">🇬🇧 Inglés</button>
+            <button class="tab-btn" data-materia="naturales">🌱 Naturales</button>
+            <button class="tab-btn" data-materia="sociales">🌍 Sociales</button>
+            <button class="tab-btn" data-materia="matematicas">📐 Matemáticas</button>
+        </div>
+
+        <!-- 4. ÁREA DE ESTUDIO -->
+        <main class="lienzo-estudio">
+            <h2 id="tituloMateria">Cuaderno de Lectura Crítica</h2>
+            <textarea id="blocNotas" placeholder="Escribe tus apuntes, resúmenes o preguntas del ICFES aquí..."></textarea>
+            <div class="estado-guardado" id="estadoGuardado">Cambios guardados automáticamente ✨</div>
+        </main>
+    </div>
+
+    <!-- 5. REPRODUCTOR DE MÚSICA FLOTANTE -->
+    <div class="reproductor-flotante" id="reproductor">
+        <div class="rep-header" id="reproductorHeader">🎵 Estudio Vibes (Arrástrame)</div>
+        <div class="rep-cuerpo">
+            <select id="selectorSonido">
+                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">🎹 Lofi Instrumental</option>
+                <option value="https://assets.mixkit.co/active_storage/sfx/2433/2433-84.wav">🌧️ Lluvia Relajante</option>
+                <option value="https://assets.mixkit.co/active_storage/sfx/1082/1082-84.wav">☕ Ambiente de Café</option>
+            </select>
+            <div class="controles-musica">
+                <button id="btnPlayPausa">▶️</button>
+                <input type="range" id="controlVolumen" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio oculto que reproducirá los sonidos -->
+    <audio id="reproductorAudio" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
