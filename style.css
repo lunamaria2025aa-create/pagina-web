@@ -1,137 +1,253 @@
 :root {
-    --fondo: #fcf6f5;
-    --pastel-rosa: #ffdfd3;
-    --pastel-azul: #d4f0f0;
-    --pastel-amarillo: #fcf7de;
-    --pastel-morado: #f0e6ff;
-    --texto: #5d536a;
+    --blanco: #ffffff;
+    --fondo-gris: #f4f6f8;
+    --azul-oscuro: #1e3a8a;
+    --azul-clarito: #e0f2fe;
+    --azul-medio: #3b82f6;
+    --marron-oscuro: #4a3728;
+    --marron-soft: #8b5a2b;
+    --marron-pastel: #f5ebe0;
+    --fuente: 'Quicksand', sans-serif;
 }
 
 body {
-    background-color: var(--fondo);
-    font-family: 'Quicksand', sans-serif;
-    color: var(--texto);
+    background-color: var(--fondo-gris);
+    font-family: var(--fuente);
+    color: var(--marron-oscuro);
     margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Estructura en Bloques (Sidebar + Canvas) */
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Barra Lateral */
+.sidebar {
+    width: 280px;
+    background-color: var(--blanco);
+    border-right: 2px solid var(--marron-pastel);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+    overflow-y: auto;
 }
 
-/* Post-it Motivacional */
-.postit-inicio {
-    background-color: var(--pastel-amarillo);
-    padding: 15px 25px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
-    transform: rotate(-1deg);
-    margin-bottom: 20px;
-    position: relative;
-    max-width: 400px;
-    text-align: center;
-}
-.postit-inicio .pin {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+.sidebar-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    border-bottom: 2px solid var(--azul-clarito);
+    padding-bottom: 5px;
 }
 
-/* Contenedor */
-.contenedor-principal {
+/* Buscador e Inputs */
+#buscador {
     width: 100%;
-    max-width: 850px;
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(93, 83, 106, 0.08);
-}
-
-/* Buscador */
-.barra-busqueda input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #f0eaf7;
-    border-radius: 50px;
-    font-size: 1rem;
-    outline: none;
-    font-family: 'Quicksand', sans-serif;
+    padding: 8px 12px;
+    border: 1px solid var(--marron-soft);
+    border-radius: 8px;
+    font-family: var(--fuente);
     box-sizing: border-box;
 }
 
-/* Pestañas */
+/* Botones de Materias */
 .pestanas-materias {
     display: flex;
-    gap: 8px;
-    margin-top: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 5px;
 }
 .tab-btn {
+    text-align: left;
+    background: none;
     border: none;
-    padding: 10px 18px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    font-family: 'Quicksand', sans-serif;
+    font-family: var(--fuente);
     font-weight: 600;
-    background-color: #f3effa;
-    color: var(--texto);
+    color: var(--marron-oscuro);
+    transition: background 0.2s;
+}
+.tab-btn:hover, .tab-btn.activo {
+    background-color: var(--azul-clarito);
+    color: var(--azul-oscuro);
+}
+
+/* Herramientas Estilo Canva */
+.herramientas-canva {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.btn-herramienta {
+    background-color: var(--blanco);
+    border: 1px solid var(--azul-medio);
+    color: var(--azul-medio);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--fuente);
+    font-weight: 600;
+    text-align: center;
     transition: all 0.2s;
 }
-.tab-btn.activo {
-    background-color: var(--pastel-morado);
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+.btn-herramienta:hover {
+    background-color: var(--azul-medio);
+    color: var(--blanco);
+}
+.btn-ia {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    border: none;
+}
+.btn-ia:hover {
+    background-color: #111827;
 }
 
-/* Lienzo */
-.lienzo-estudio {
-    margin-top: 20px;
-    background: #faf8ff;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px dashed #e1d7f0;
+/* Galería de Stickers Previa */
+.galeria-stickers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 10px;
 }
-textarea {
+.sticker-previa {
     width: 100%;
-    height: 350px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 5px;
+    border-radius: 5px;
+}
+.sticker-previa:hover {
+    background-color: var(--marron-pastel);
+}
+
+/* CUADERNO Y HOJA INTERACTIVA */
+.cuaderno-canvas {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--marron-pastel);
+    position: relative;
+}
+
+.cuaderno-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.cuaderno-header h2 {
+    margin: 0;
+    color: var(--marron-oscuro);
+}
+
+.control-paginas {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--blanco);
+    padding: 6px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.control-paginas button {
     border: none;
-    background: transparent;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--marron-soft);
+}
+
+/* La Hoja de Papel (Lienzo Canva) */
+.hoja-papel {
+    background-color: var(--blanco);
+    flex-grow: 1;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(74, 55, 40, 0.08);
+    position: relative; /* Clave para que los stickers se posicionen dentro */
+    overflow: hidden;
+    padding: 30px;
+}
+
+#blocNotas {
+    width: 100%;
+    height: 100%;
+    border: none;
     resize: none;
     outline: none;
+    font-family: var(--fuente);
     font-size: 1.1rem;
-    line-height: 1.6;
-    font-family: 'Quicksand', sans-serif;
-    box-sizing: border-box;
-}
-.estado-guardado {
-    font-size: 0.85rem;
-    color: #b0a8ba;
-    text-align: right;
+    line-height: 1.8;
+    background: transparent;
+    color: #333;
 }
 
-/* REPRODUCTOR FLOTANTE */
+/* ELEMENTOS DINÁMICOS (STICKERS Y POST-ITS EN LA HOJA) */
+.elemento-movil {
+    position: absolute;
+    left: 50px;
+    top: 100px;
+    touch-action: none;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+.elemento-movil img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Evita interferencias al arrastrar */
+}
+
+/* Post-it / Cuadro de Texto Kawaii */
+.postit-texto {
+    background-color: #fef08a; /* Amarillo post-it suave */
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    min-width: 100px;
+    min-height: 50px;
+    font-family: var(--fuente);
+    color: #333;
+    border: 1px solid #fef08a;
+}
+.postit-texto:focus {
+    outline: 2px solid var(--azul-medio);
+}
+
+/* REPRODUCTOR FLOTANTE AESTHETIC */
 .reproductor-flotante {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     width: 220px;
     overflow: hidden;
     z-index: 1000;
-    border: 2px solid var(--pastel-azul);
+    border: 2px solid var(--marron-soft);
 }
 .rep-header {
-    background: var(--pastel-azul);
+    background: var(--marron-soft);
+    color: var(--blanco);
     padding: 8px;
     font-size: 0.85rem;
     font-weight: 600;
     text-align: center;
-    cursor: move; /* Indica que se puede mover */
+    cursor: move;
 }
 .rep-cuerpo {
-    padding: 12px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -140,7 +256,7 @@ textarea {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    font-family: 'Quicksand', sans-serif;
+    font-family: var(--fuente);
 }
 .controles-musica {
     display: flex;
@@ -149,12 +265,20 @@ textarea {
 }
 .controles-musica button {
     border: none;
-    background: var(--pastel-morado);
+    background: var(--azul-clarito);
+    color: var(--azul-oscuro);
     border-radius: 50%;
     width: 30px;
     height: 30px;
     cursor: pointer;
 }
 .controles-musica input[type="range"] {
-    width: 130px;
+    width: 120px;
+}
+
+.estado-guardado {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--marron-soft);
+    text-align: right;
 }
